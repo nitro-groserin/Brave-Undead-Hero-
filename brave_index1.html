@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="brave_style1.css">
+  <title>ブレイブ・アンデッド・ヒーロー</title>
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx" crossorigin="anonymous"></script>
+  <style>
+    /* bodyとコンテナのスタイル */
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      background: linear-gradient(180deg, #8b0000 0%, #ff4500 50%, #ffa500 100%); /* マグマのようなグラデーションに変更 */
+    }
+    
+    /* バブルコンテナのスタイル */
+    .bubble-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    /* バブルの基本スタイル */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 165, 0, 0.6); /* 燃えるようなオレンジ色の泡に変更 */
+      box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.8); /* 輝くようなゴールドの影に変更 */
+      animation: bubblingup linear infinite;
+      will-change: transform, opacity;
+    }
+
+    /* アニメーションの定義 */
+    @keyframes bubblingup {
+      0% {
+        transform: translateY(100vh) scale(0.2);
+        opacity: 0.1;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* タイトルとボタンのスタイル */
+    .main-title {
+      position: relative;
+      z-index: 10;
+      color: white;
+      font-size: 72px;
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* 影を強調 */
+      font-family: 'georgia', serif;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+    .start-button {
+      position: relative;
+      z-index: 10;
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #8b0000; /* ボタンの文字色を深い赤に */
+      background-color: white;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 影を強調 */
+      transition: transform 0.2s, background-color 0.2s;
+      margin-top: 50px;
+    }
+
+    .start-button:hover {
+      background-color: #ffe0b2; /* ホバー時の色を明るいオレンジに */
+      transform: scale(1.05);
+    }
+
+
+    /* 広告コンテナのスタイル */
+    .ad-container {
+      position: relative;
+      z-index: 10;
+      margin-bottom: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bubble-container"></div>
+  
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+         data-ad-slot="yyyyyyyyyyyyyy"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </div>
+  
+  <h1 class="main-title">Brave Undead Hero,</h1>
+  <a href="/扉/index2.html" class="start-button">スタート</a>
+
+  <script>
+    const container = document.querySelector('.bubble-container');
+    
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      
+      const size = Math.random() * 20 + 5;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.animationDuration = `${Math.random() * 4 + 2}s`;
+      
+      container.appendChild(bubble);
+    
+      bubble.addEventListener('animationend', () => {
+        bubble.remove();
+      });
+    }
+    
+    setInterval(createBubble, 100);
+    
+    window.addEventListener('resize', () => {
+      container.style.width = window.innerWidth + 'px';
+      container.style.height = window.innerHeight + 'px';
+    });
+  </script>
+  
+
+
+<div class="MigiSita">
+  <div id="" class="">言語選択
+    <a href="">
+      <img src="/img-box(国旗)/screenshot_20250720-010249~2.png" alt="右下" width="80px" height="50px" />
+    </a>
+  </div>
+</div>
+
+<div class="MigiSita2">
+  <div id="" class="">
+    <a href="">
+      <img src="/img-box(国旗)/screenshot_20250720-010338~2.png" alt="右下" width="80px" height="50px" />
+    </a>
+  </div>
+</div>
+
+<div class="MigiSita3">
+  <div id="" class="">
+    <a href="">
+      <img src="/img-box(国旗)/screenshot_20250720-010319~2.png" alt="右下" width="80px" height="50px" />
+    </a>
+  </div>
+</div>
+
+<div class="MigiSita4">
+  <div id="" class="">
+    <a href="">
+      <img src="/img-box(国旗)/screenshot_20250720-010327~3.png" alt="右下" width="80px" height="50px" />
+    </a>
+  </div>
+</div>
+
+<div class="MigiSita5">
+  <div id="" class="">
+    <a href="">
+      <img src="/img-box(国旗)/screenshot_20250720-010308~2.png" alt="右下" width="80px" height="50px" />
+    </a>
+  </div>
+</div>
+
+
+  
+  
+</body>
+
+<footer class="footer">
+  <p>©2025 暴風プロジェクト</p>
+</footer>
+
+<script src="brave_script1.js"></script>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレイブ・アンデッド・ヒーロー</title>
+    <style>
+        /* CSSセクション */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .door-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            border: none;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .door {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 1s ease-in-out;
+            z-index: 10;
+            
+            background-image: url('/img-box/Screenshot_20250924-070008~2.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .left-door {
+            left: 0;
+            transform-origin: center left; 
+            background-position: center left;
+        }
+
+        .right-door {
+            right: 0;
+            transform-origin: center right; 
+            background-position: center right;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 5;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.8s ease-in 0.5s;
+        }
+
+        .door-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            z-index: 6;
+        }
+
+        .door-open .left-door {
+            transform: rotateY(90deg);
+        }
+
+        .door-open .right-door {
+            transform: rotateY(-90deg);
+        }
+
+        .door-open .content {
+            opacity: 1;
+        }
+
+        .door-open::before {
+            opacity: 1;
+        }
+
+        #toggleButton {
+            z-index: 11;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #45a049;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, opacity 0.5s; /* opacityもtransitionに追加 */
+        }
+
+        #toggleButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="door-container">
+        <div class="door left-door"></div>
+        <div class="door right-door"></div>
+        <div class="content">
+            <h1>ようこそ<br>
+            選ばれし者たちよ</h1>
+        </div>
+    </div>
+    <button id="toggleButton">Episode.1へ</button>
+    
+    <audio id="bgm" src="/sound-box/sei_ge_door_big_op02.mp3" preload="auto"></audio>
+    
+    <script>
+        // JavaScriptセクション
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggleButton');
+            const doorContainer = document.querySelector('.door-container');
+            const bgm = document.getElementById('bgm');
+
+            toggleButton.addEventListener('click', function() {
+                // ボタンを非表示にする
+                toggleButton.style.opacity = '0';
+                toggleButton.style.pointerEvents = 'none'; // クリックできないようにする
+
+                // 扉を開ける
+                doorContainer.classList.add('door-open');
+                
+                // 音源を再生
+                bgm.currentTime = 0;
+                bgm.play();
+
+                // アニメーション完了後に次のページに移動
+                // transitionの合計時間(1s + 0.8s + 0.5s)を考慮して少し長めに設定
+                setTimeout(function() {
+                    window.location.href = '/1-1(第一章、第1話)スパン/index3.html'; // ← ここに次のページのファイル名またはURLを指定
+                }, 2500); // 2.5秒後に実行
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
