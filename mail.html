@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brave Undead Monolith</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* 最終強化：HTMLとBODYの幅を100%に固定し、オーバーフローを絶対的に隠す */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 横スクロールを完全に禁止 */
+        }
+        
+        /* CSS: モノリスを際立たせるミニマルデザイン */
+        body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Roboto Mono', monospace; 
+            background-color: #050505; /* ほぼ真っ黒な背景 */
+            padding: 0;
+        }
+
+        /* Three.jsのCanvas */
+        #three-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            opacity: 1; 
+        }
+
+        .container {
+            position: relative;
+            z-index: 10; /* 最前面に配置 */
+            text-align: center;
+            /* 最終決定版のレスポンシブ設定 */
+            max-width: 320px; 
+            width: 90%; 
+            padding: 40px 30px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.98); 
+            border: 4px solid #333333; 
+            box-shadow: 0 0 50px rgba(231, 76, 60, 0.8), 0 0 10px rgba(255, 255, 255, 0.5) inset; 
+            color: #1a1a1a;
+            transition: transform 0.4s ease, box-shadow 0.4s ease; 
+            
+            /* 全体で長い単語やURLの改行を有効化（WordBreakは個別の要素で上書き） */
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        
+        .container:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 0 70px #e74c3c, 0 0 15px rgba(255, 255, 255, 0.7) inset; 
+        }
+        
+        /* 中身のスタイルは維持 */
+        .hero-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            color: #e74c3c;
+            text-transform: uppercase;
+        }
+        
+        .contact-info {
+            border-bottom: 1px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .email-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            text-decoration: none;
+            display: block;
+            /* メールアドレスの改行を強制 */
+            word-break: break-all;
+        }
+
+        /* 最終強化：ご指摘の横幅の飛び出しを修正するためのスタイル */
+        .note-text, .alt-contact {
+            font-size: 0.9em; 
+            max-width: 100%; 
+            /* 親要素内での改行を強制（二重設定） */
+            word-wrap: break-word;
+            word-break: break-all;
+            /* 要素自体の余白をリセットして、幅の計算ミスを防ぐ */
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 20px; 
+            /* 親要素を絶対的に超えないようにする */
+            box-sizing: border-box; 
+        }
+        
+        .alt-contact a {
+            color: #e74c3c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dashed #e74c3c;
+            padding-bottom: 1px;
+            
+            /* リンク内のURLの改行を確実にするためのトリプル強化 */
+            display: inline-block;
+            word-wrap: break-word;
+            word-break: break-all;
+            /* リンク内のコンテンツが親要素を超えることを防ぐ */
+            max-width: 100%;
+            /* 念のため、パディングによるはみ出しを打ち消す */
+            box-sizing: border-box; 
+        }
+        /* ---------------------------------------------------- */
+
+    </style>
+</head>
+<body>
+    <div id="three-container"></div>
+
+    <div class="container">
+        <h1 class="hero-title">BRAVE UNDEAD HERO</h1>
+        <div class="contact-info">
+            <a href="mailto:tantantarou99@gmail.com" class="email-link">
+                tantantarou99@gmail.com
+            </a>
+        </div>
+        <p class="note-text">
+          電波犯罪やサイバー犯罪の影響で、<br>
+          上記アドレスに連絡が届かない恐れがあります。
+        </p>
+        <p class="alt-contact">
+          その場合は
+          <a href="https://twitter.com/brave_undead_hero_dm" target="_blank">
+            TwitterのDM
+          </a>
+          でご連絡ください。
+        </p>
+    </div>
+
+    <script>
+        // Three.jsによるモノリスと空間の実装 (変更なし)
+        const container = document.getElementById('three-container');
+        let scene, camera, renderer, cube;
+        let clock = new THREE.Clock();
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // 1. 環境光 (Ambient Light): 全体を少し明るく
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+            scene.add(ambientLight);
+            
+            // 2. スポットライト (Spot Light): メインの光
+            const spotLight = new THREE.SpotLight(0xffffff, 20); // 強めの光
+            spotLight.position.set(0, 0, 50);
+            spotLight.lookAt(scene.position);
+            scene.add(spotLight);
+
+            // 3. モノリス（立方体）の作成
+            const geometry = new THREE.BoxGeometry(1, 4, 1); // 縦長のモノリス
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0x222222, // 非常に暗いグレー
+                shininess: 100, // 光沢を強調
+                specular: 0x888888 // 光の反射色
+            });
+            cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+            
+            // 4. 床（シンプルなグリッド）の追加
+            const gridHelper = new THREE.GridHelper(100, 100, 0x111111, 0x111111);
+            gridHelper.position.y = -2;
+            scene.add(gridHelper);
+
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onDocumentMouseMove(event) {
+            // マウスの動きに合わせてカメラを回転させる
+            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+            
+            // カメラを原点(0,0,0)を中心にわずかに回転
+            camera.position.x = Math.sin(mouseX * Math.PI * 0.1) * 5;
+            camera.position.y = Math.sin(mouseY * Math.PI * 0.1) * 5;
+            camera.lookAt(scene.position);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            const delta = clock.getDelta();
+            
+            // モノリスをゆっくり回転させる
+            cube.rotation.y += 0.005;
+            
+            renderer.render(scene, camera);
+        }
+    </script>
+    
+    
+<script src="mail.js"></script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
