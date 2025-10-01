@@ -1,5 +1,5 @@
 const audioPaths = [
-  { src: '/sound-box/Wind-Synthetic_Ambi02-1.mp3', volume: 0.2, id: 'siren' },
+  { src: 'sound-box/Wind-Synthetic_Ambi02-1.mp3', volume: 0.2, id: 'siren' },
   { src: '', volume: 1.0, id: 'bonfire' }
 ];
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ページ遷移ボタンの効果音処理 (変更なし)
   const pageNextButton = document.getElementById('nextButton1');
   const pageBackButton = document.getElementById('backButton2');
-  const pageClickSound = new Audio('/sound-box/PC-Mouse06-1.mp3');
+  const pageClickSound = new Audio('sound-box/PC-Mouse06-1.mp3');
 
   if (pageNextButton) {
     pageNextButton.addEventListener('click', function() {
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // 効果音の定義とボリューム設定 (変更なし)
-  const clickSound1 = new Audio('/sound-box/meka_ge_keyborad01.mp3');
+  const clickSound1 = new Audio('sound-box/meka_ge_keyborad01.mp3');
   const clickSound2 = new Audio('');
 
   const mainClickVolume1 = 0.2;
