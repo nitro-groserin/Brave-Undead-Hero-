@@ -11,7 +11,7 @@ const audioPaths = [
   { src: '', volume: 0.2 }, // 1曲目
   { src: '', volume: 0.3 }, // 2曲目
   { src: '', volume: 0.4 }, // 3曲目
-  { src: '/sound-box/勇者のオルゴール(KR).mp3', volume: 1.0 }  // 4曲目
+  { src: '勇者のオルゴール(KR).mp3', volume: 1.0 }  // 4曲目
 ];
 
 const audioElements = audioPaths.map(path => {
