@@ -1,0 +1,164 @@
+body {
+  overflow: hidden;
+  background-image: url('/img-box/Screenshot_20250924-091932~2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 95%;
+  height: 100vh;
+  background-color: black;
+}
+
+.p1 {
+  background-color: #3f3f3f;
+  color: white;
+  padding: 0px 0px 0px 10px;
+  font-size: 24px;
+  border: solid 2px whitesmoke;
+  box-sizing: border-box;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#preContainer {
+  position: absolute;
+  top: 510px;
+  width: 400px;
+}
+
+#preContainer pre {
+  overflow-y: auto;
+  height: 230px;
+}
+
+.div1 {
+  position: absolute;
+  left: -50px;
+  top: 105px;
+  z-index: 0;
+}
+
+.div2 {
+  position: absolute;
+  left: 180px;
+  top: 55px;
+  display: none;
+  z-index: 0;
+}
+
+.div3 {
+  position: absolute;
+  left: 0;
+  top: 105px;
+  display: none;
+}
+
+.div4 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 50%;
+  left: 100px;
+  top: 100px;
+  display: none;
+  overflow: hidden;
+}
+
+.div5 {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  border-radius: 1%;
+  left: 9px;
+  top: 200px;
+  display: none;
+  overflow: hidden;
+}
+
+.div6 {
+  position: absolute;
+  left: 140px;
+  top: 150px;
+  display: none;
+  z-index: -1;
+}
+
+.button-flex {
+  display: flex;
+  justify-content: space-betwen;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+#nextButton1 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  background-color: orange;
+  border: none;
+  color: white;
+  top: 195px;
+  left: 300px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#backButton2 {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  background-color: orange;
+  border: none;
+  color: white;
+  top: 195px;
+  left: 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.autoPlayButton {
+  position: absolute;
+  width: 105px;
+  height: 30px;
+  background-color: orange;
+  border: none;
+  color: white;
+  top: 195px;
+  left: 145px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.autoPlayButton:hover {
+  background-color: turquoise;
+}
+
+.button-flex a {
+  text-align: center;
+  padding: 0px;
+  line-height: 1.8;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
