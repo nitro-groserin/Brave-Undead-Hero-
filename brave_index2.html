@@ -168,3 +168,348 @@
 
 
 
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレイブ・アンデッド・ヒーロー</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        /* CSSセクション */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        .door-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            border: none;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .door {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 1s ease-in-out;
+            z-index: 10;
+            
+            background-image: url('/img-box/Screenshot_20250924-070008~2.png'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .left-door {
+            left: 0;
+            transform-origin: center left; 
+            background-position: center left;
+        }
+
+        .right-door {
+            right: 0;
+            transform-origin: center right; 
+            background-position: center right;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: transparent; 
+            z-index: 5;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.8s ease-in 0.5s;
+        }
+
+        .door-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            z-index: 6;
+        }
+
+        .door-open .left-door {
+            transform: rotateY(90deg);
+        }
+
+        .door-open .right-door {
+            transform: rotateY(-90deg);
+        }
+
+        .door-open .content {
+            opacity: 1;
+        }
+
+        .door-open::before {
+            opacity: 1;
+        }
+
+        #toggleButton {
+            z-index: 11;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #e91e63; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, opacity 0.5s;
+        }
+
+        #toggleButton:hover {
+            background-color: #d81b60; 
+        }
+
+        #petal-canvas-container canvas {
+            display: block;
+        }
+        
+        .content h1 {
+            position: absolute;
+            z-index: 10;
+            color: #fff; 
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            font-size: 4vw; 
+        }
+    </style>
+</head>
+<body>
+    <div class="door-container">
+        <div class="door left-door"></div>
+        <div class="door right-door"></div>
+        <div class="content">
+            <h1>ようこそ<br>
+            選ばれし者たちよ</h1>
+        </div>
+    </div>
+    <button id="toggleButton">Episode.1へ</button>
+    
+    <audio id="bgm" src="/sound-box/sei_ge_door_big_op02.mp3" preload="auto"></audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggleButton');
+            const doorContainer = document.querySelector('.door-container');
+            const content = document.querySelector('.content');
+            const bgm = document.getElementById('bgm');
+
+            const petalContainer = document.createElement('div');
+            petalContainer.id = 'petal-canvas-container';
+            petalContainer.style.width = '100%';
+            petalContainer.style.height = '250%'; // 👈 以前の要望により拡張されたまま
+            petalContainer.style.position = 'absolute';
+            petalContainer.style.top = '0';
+            petalContainer.style.left = '0';
+            petalContainer.style.zIndex = '1'; 
+            
+            content.insertBefore(petalContainer, content.firstChild); 
+            content.style.zIndex = '6'; 
+
+            toggleButton.addEventListener('click', function() {
+                toggleButton.style.opacity = '0';
+                toggleButton.style.pointerEvents = 'none';
+
+                doorContainer.classList.add('door-open');
+                
+                bgm.currentTime = 0;
+                bgm.play();
+
+                setTimeout(function() {
+                    initPetalScene(petalContainer);
+                }, 100); 
+                
+                setTimeout(function() {
+                    window.location.href = 'counter.html';
+                }, 5000); // 演出時間を長めに設定
+            });
+        });
+
+        // ===========================================
+        // Three.js 桜の花びらシーン初期化関数
+        // ===========================================
+
+        function initPetalScene(container) {
+            let scene, camera, renderer, clock, petalGroup;
+
+            scene = new THREE.Scene();
+            clock = new THREE.Clock();
+
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 2.5; // カメラを少し後ろに引く
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            window.addEventListener('resize', onWindowResize, false);
+            function onWindowResize() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+            
+            // 環境光を追加して花びらが見えやすくする
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); 
+            scene.add(ambientLight);
+
+            // ===========================================
+            // 桜の花びらパーティクルシステム
+            // ===========================================
+
+            const petalCount = 1000; // 花びらの枚数を増やして臨場感を出す
+            const petalGeometry = new THREE.PlaneGeometry(0.1, 0.1); 
+            
+            // テクスチャを読み込む
+            const textureLoader = new THREE.TextureLoader();
+            
+            // 💡 1つ目のテクスチャ (韓国国旗)
+            const petalTexture1 = textureLoader.load('Screenshot_20250720-010319~2.png'); 
+            const petalMaterial1 = new THREE.MeshBasicMaterial({ 
+                color: 0xffa8d8, 
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.9,
+                map: petalTexture1, 
+                alphaTest: 0.5, 
+            });
+
+            // 💡 2つ目のテクスチャ (例: 日本国旗)
+            // **注意: このパス('japan_flag.png')は仮のものです。適切な画像に差し替えてください。**
+            const petalTexture2 = textureLoader.load('Screenshot_20250720-010327~3.png'); 
+            const petalMaterial2 = new THREE.MeshBasicMaterial({ 
+                color: 0xffffff, // 2つ目の花びらの色、白など
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.9,
+                map: petalTexture2, 
+                alphaTest: 0.5, 
+            });
+
+            // マテリアルの配列を作成
+            const petalMaterials = [petalMaterial1, petalMaterial2]; 
+
+            petalGroup = new THREE.Group();
+            scene.add(petalGroup);
+
+            for (let i = 0; i < petalCount; i++) {
+                // 💡 ランダムにマテリアルを選択し、適用
+                const randomMaterial = petalMaterials[Math.floor(Math.random() * petalMaterials.length)];
+
+                const petal = new THREE.Mesh(petalGeometry, randomMaterial); 
+                
+                // 初期位置を広範囲に、画面上部から広くランダムに配置
+                petal.position.set(
+                    (Math.random() - 0.5) * 8,  // x (-4から4)
+                    Math.random() * 5 + 3,      // y (3から8, 画面上部外から)
+                    (Math.random() - 0.5) * 5   // z (-2.5から2.5, 奥行きも活用)
+                );
+
+                petal.rotation.set(
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2
+                );
+
+                petal.userData = {
+                    // 落下速度は遅く、ランダム性を強調
+                    fallSpeed: 0.001 + Math.random() * 0.005, 
+                    // 回転速度はランダムかつ一定の周期で変化
+                    rotateSpeed: (Math.random() - 0.5) * 0.03,
+                    swayFactor: Math.random() * 0.08 + 0.03, // 揺らぎの強さ
+                    swayOffset: Math.random() * Math.PI * 2, // 揺らぎのオフセット
+                    startHeight: petal.position.y // リセット用の高さ
+                };
+                
+                petalGroup.add(petal);
+            }
+
+            // アニメーションループ
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const delta = clock.getDelta();
+                const elapsedTime = clock.getElapsedTime();
+                
+                // カメラの揺らぎは維持
+                camera.position.x = Math.sin(elapsedTime * 0.05) * 0.1;
+                
+                // 桜の花びらのアニメーション
+                petalGroup.children.forEach(petal => {
+                    const userData = petal.userData;
+                    
+                    // 落下速度の適用
+                    petal.position.y -= userData.fallSpeed * delta * 60; 
+                    
+                    // 左右の揺らぎ（風と重力の不規則性を表現）
+                    petal.position.x += Math.sin(elapsedTime * 0.5 + userData.swayOffset) * userData.swayFactor * delta * 60;
+                    petal.position.z += Math.cos(elapsedTime * 0.3 + userData.swayOffset * 0.5) * userData.swayFactor * 0.5 * delta * 60;
+
+
+                    // Z軸回転をメインに、ひらひら感を強調
+                    petal.rotation.z += userData.rotateSpeed * delta * 60 * 2; 
+                    petal.rotation.y += userData.rotateSpeed * 0.5 * delta * 60;
+
+
+                    // 画面下部（赤線の位置）まで流れたら、上部に戻す (変更箇所: -15 に変更)
+                    if (petal.position.y < -15) { 
+                        petal.position.y = userData.startHeight; // 元のランダムな上部に戻す
+                        petal.position.x = (Math.random() - 0.5) * 8;
+                        petal.position.z = (Math.random() - 0.5) * 5;
+                        
+                        // 速度などをリセットし、流れにランダム性を与える
+                        userData.fallSpeed = 0.001 + Math.random() * 0.005; 
+                        userData.rotateSpeed = (Math.random() - 0.5) * 0.03;
+                        userData.swayOffset = Math.random() * Math.PI * 2;
+                    }
+                });
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
