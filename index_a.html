@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレイブ・アンデッド・ヒーロー</title>
+
+    <style>
+        /* 【グローバルリセット】ブラウザのデフォルトマージンをリセット */
+        body, html, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* モーダル背景（画面全体を覆う） */
+        .modal {
+            display: none; /* 初期状態では非表示 */
+            position: fixed;
+            z-index: 1000; /* 最前面に表示 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.95); /* 半透明の黒 */
+        }
+
+        /* モーダル内の動画コンテナ */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            height: auto;
+        }
+
+        /* モーダル内の動画要素 */
+        #modalVideo {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 閉じるボタン */
+        .close {
+            position: fixed;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        /* タップしてモーダルを起動するための透明なオーバーレイ */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 50px;">
+    <p style="
+        font-size: 24px;
+        color: #ff4500;
+        font-weight: 900;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        border: 3px dashed #ff4500;
+        display: inline-block;
+        padding: 10px 30px;
+        background-color: #fff8e8;
+    ">
+        🌟 COMING SOON 🌟
+    </p>
+</div>
+
+<div style="
+    text-align: center;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+">
+    <a href="https://nitro-groserin.github.io/Yakuza-Slayer">
+        <img src="/20251002_135127.jpg" alt="広告スペース" style="
+            max-width: 100%; 
+            height: auto; 
+            border: 2px solid #ff4500;
+            border-radius: 8px;
+            background-color: #fffaf0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        ">
+    </a>
+</div>
+
+<div style="
+    text-align: center;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 400px;
+">
+    <h3 style="
+        font-size: 16px;
+        color: #4682b4;
+        margin-bottom: 10px;
+    ">
+        最新PV / 予告動画
+    </h3>
+    <div style="
+        position: relative;
+        padding-top: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    ">
+        <video 
+            id="previewVideo"
+            src="/screen-20250612-034121~2.mp4" 
+            preload="metadata"
+            muted 
+            playsinline
+            loop
+            autoplay
+            style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            ">
+        </video>
+        <div class="video-overlay" onclick="openModal()"></div>
+    </div>
+</div>
+
+<p style="
+    text-align: center;
+    font-size: 14px;
+    color: #ff0000; /* 赤色で目立たせる */
+    font-weight: bold;
+    margin: 5px auto 15px auto; /* 上に5px、下に15pxの余白を確保 */
+    max-width: 400px;
+">
+    👆 タップで全画面・高音質再生！ 👆
+</p>
+<div style="
+    text-align: center; 
+    padding: 10px; 
+    font-size: 14px; 
+    color: #666;
+    border-top: 1px solid #eee;
+">
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center">
+                <img src="http://www5.kannet.ne.jp/~counter/count.cgi?name=brave&type=1&width=9" alt="アクセスカウンター">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align: center; margin-bottom: 30px;">
+    <a href="/1-1(第一章、第1話)スパン/brave_index3.html" style="
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #4682b4;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    " onmouseover="this.style.backgroundColor='#1e90ff';" onmouseout="this.style.backgroundColor='#4682b4';">
+        ここを押して次のページへ！
+    </a>
+</div>
+
+<div id="videoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    
+    <div class="modal-content">
+        <video id="modalVideo" src="/screen-20250612-034121~2.mp4" controls autoplay></video>
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("videoModal");
+    var modalVideo = document.getElementById("modalVideo");
+    var previewVideo = document.getElementById("previewVideo");
+
+    // ページ読み込み完了後に、プレビュー動画の再生を強制的に開始
+    window.onload = function() {
+        previewVideo.play().catch(error => {
+            console.log("プレビュー動画の自動再生がブロックされました。");
+        });
+    };
+    
+
+    // モーダルを開き、動画を再生し、全画面表示をリクエスト
+    function openModal() {
+        modal.style.display = "flex";
+        modal.style.alignItems = "center";
+        modal.style.justifyContent = "center";
+        
+        previewVideo.pause();
+
+        modalVideo.load();
+        
+        modalVideo.play().catch(error => {
+            console.log("モーダル動画の自動再生がブロックされました。");
+        }); 
+
+        var elem = modalVideo;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    }
+
+    // モーダルを閉じ、動画を停止
+    function closeModal() {
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+        
+        modal.style.display = "none";
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+        
+        // プレビュー動画を再開
+        previewVideo.play().catch(error => {
+             // 再開がブロックされた場合
+        });
+    }
+    
+    // Escキーが押されたり、全画面が終了したらモーダルを閉じる
+    document.onkeydown = function(e) {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    };
+    
+    // モーダルの背景をクリックしてもモーダルを閉じる
+    modal.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeModal();
+      }
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
