@@ -12,17 +12,23 @@
             padding: 0;
         }
 
+        /* 💥修正点1：HTMLとBODYの縦幅を画面サイズ（ビューポート）に固定し、スクロールを無効化 */
+        html, body {
+            height: 100vh; 
+            overflow: hidden; 
+        }
+
         /* モーダル背景（画面全体を覆う） */
         .modal {
-            display: none; /* 初期状態では非表示 */
+            display: none; 
             position: fixed;
-            z-index: 1000; /* 最前面に表示 */
+            z-index: 1000; 
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.95); /* 半透明の黒 */
+            background-color: rgba(0,0,0,0.95); 
         }
 
         /* モーダル内の動画コンテナ */
@@ -68,16 +74,50 @@
 </head>
 <body>
 
-<div style="text-align: center; margin-bottom: 50px;">
+
+<div style="
+    text-align: center;
+    border: 2px solid #ff4500; 
+    padding: 10px; /* パディングも少し削減 */
+    margin: 15px auto 15px auto; /* 上下マージンを15pxに削減 */
+    max-width: 400px;
+    background-color: #fffaf0;
+    border-radius: 8px;
+">
+    <h3 style="margin-top: 0; color: #ff4500; font-size: 15px;">
+        YoutubeやTikTok等のコンテンツ<br>
+      🔥  会社の商品等を格安で宣伝してみませんか？ 🔥
+    </h3>
+    <p style="font-size: 13px; color: #333; margin-bottom: 5px;">
+        コチラのスペースにドカンと掲載💪<br>
+        <strong style="color: #ff4500; font-size: 15px;">【掲載料金：月額5,000円】</strong>
+    </p>
+    <a href="mail.html" style="
+        display: inline-block;
+        padding: 5px 15px; /* ボタンパディングを削減 */
+        background-color: #ff4500;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 5px;
+    ">
+        詳細・お問い合わせはこちら
+    </a>
+</div>
+
+
+<div style="text-align: center; margin-bottom: 10px;">
     <p style="
-        font-size: 24px;
+        font-size: 22px; /* フォントサイズを少し削減 */
         color: #ff4500;
         font-weight: 900;
         text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-        padding: 10px 0;
+        padding: 8px 0;
         border: 3px dashed #ff4500;
         display: inline-block;
-        padding: 10px 30px;
+        padding: 8px 25px;
         background-color: #fff8e8;
     ">
         🌟 COMING SOON 🌟
@@ -86,8 +126,8 @@
 
 <div style="
     text-align: center;
-    padding: 15px;
-    margin: 20px auto;
+    padding: 5px; /* パディングを削減 */
+    margin: 5px auto; /* 上下マージンを最小化 */
     max-width: 400px;
 ">
     <a href="https://nitro-groserin.github.io/Yakuza-Slayer">
@@ -104,16 +144,16 @@
 
 <div style="
     text-align: center;
-    padding: 15px;
-    margin: 10px auto;
+    padding: 5px 15px 5px 15px; /* 上下のパディングを削減 */
+    margin: 5px auto; /* 上下マージンを最小化 */
     max-width: 400px;
 ">
     <h3 style="
-        font-size: 16px;
+        font-size: 15px;
         color: #4682b4;
-        margin-bottom: 10px;
+        margin-bottom: 5px; /* マージンを削減 */
     ">
-        最新PV / 予告動画
+        👇独占PV / 画面クリックで拡大 / 🚫音量注意
     </h3>
     <div style="
         position: relative;
@@ -146,17 +186,17 @@
 
 <p style="
     text-align: center;
-    font-size: 14px;
-    color: #ff0000; /* 赤色で目立たせる */
+    font-size: 13px; /* フォントサイズを削減 */
+    color: #ff0000; 
     font-weight: bold;
-    margin: 5px auto 15px auto; /* 上に5px、下に15pxの余白を確保 */
+    margin: 5px auto 5px auto; /* 上下マージンを最小化 */
     max-width: 400px;
 ">
-    👆 タップで全画面・高音質再生！ 👆
+    👆　タップで全画面・高音質再生！ 👆
 </p>
 <div style="
     text-align: center; 
-    padding: 10px; 
+    padding: 5px; /* パディングを削減 */
     font-size: 14px; 
     color: #666;
     border-top: 1px solid #eee;
@@ -170,16 +210,16 @@
     </table>
 </div>
 
-<div style="text-align: center; margin-bottom: 30px;">
+<div style="text-align: center; margin-bottom: 10px;">
     <a href="brave_index3.html" style="
         display: inline-block;
-        padding: 12px 30px;
+        padding: 10px 25px; /* ボタンパディングを削減 */
         background-color: #4682b4;
         color: white;
         text-decoration: none;
         border-radius: 6px;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s;
     " onmouseover="this.style.backgroundColor='#1e90ff';" onmouseout="this.style.backgroundColor='#4682b4';">
@@ -270,13 +310,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
