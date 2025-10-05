@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ブレイブ・アンデッド・ヒーロー</title>
+  <link rel="stylesheet" href="brave_style5.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script src="https://js.stripe.com/v3/"></script> 
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<canvas id="threeCanvas"></canvas>
+
+<div class="div1">
+  <img src="/img-bar-box/1758673954966~2.png" width="400px" height="500px" alt="主">
+</div>
+
+<div class="div2">
+  <img src="/img-bar-box/1758940116915~2 (1).png" width="215px" height="465px" alt="試験官">
+</div>
+
+<div class="div3">
+  <img src="/img-box/Screenshot_20250927-162035~3.png" width="420px" height="295px" alt="">
+</div>
+
+<div class="div4">
+  <img src="/img-bar-box/1758743403212~2.png" width="280px" height="400px" alt="極道寺">
+</div>
+
+
+<div class="div5">
+  <img src="/img-bar-box/Screenshot_20250928-091630~2.png" width="230px" height="370px">
+</div>
+
+
+
+<div class="div6">
+  <img src="/img-bar-box/Screenshot_20250928-095154~2.png" width="240px" height="480px">
+</div>
+
+
+
+<div class="div7">
+  <img src="/img-bar-box/Screenshot_20250928-100342~2.png" width="240px" height="350px">
+</div>
+
+
+
+<div class="div8">
+  <img src="/img-bar-box/Screenshot_20250928-104240~2.png" width="320px" height="530px">
+</div>
+
+
+
+
+
+
+
+
+
+<div id="preContainer">
+
+  
+
+
+    <pre id="pre96" class="p1" style="display: none;">
+<span>「極道寺 龍の剣戟を受けてみよッ!!」</span>
+    <div class="button-flex">
+      <a href="/1-1(第一章、第2話)スパン/brave_index4.html" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+    <pre id="pre97" class="p1" style="display: none;">
+<span>「マジですかッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+        <pre id="pre98" class="p1" style="display: none;">
+ <span>その瞬間、極道寺くんの足元から炎が舞い上がる!!</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+        <pre id="pre99" class="p1" style="display: none;">
+<span>「なんて高密度なヒーロー力なんだッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+        <pre id="pre100" class="p1" style="display: none;">
+ <span>ーーヒーロー力。
+ それは、この世界に生きる者なら、誰もが身に着けている生命エネルギーの略称……。</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+      <pre id="pre101" class="p1" style="display: none;">
+<span>「俺のヒーロー力は、600万!!
+　並の人間一人の数百倍は、ある数値だ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+        <pre id="pre102" class="p1" style="display: none;">
+<span>「分かるだろ？　ゾンビくん。
+　これが!!
+　ゾンビと1年主席候補の違いと言う奴だ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+      <pre id="pre103" class="p1" style="display: none;">
+<span>「ウォオオオオオオッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+
+      <pre id="pre104" class="p1" style="display: none;">
+<span>「あわわわわぁ〜!!
+　アァアアアーーーッッッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+  
+        <pre id="pre105" class="p1" style="display: none;">
+<span>「…………ッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+        <pre id="pre106" class="p1" style="display: none;">
+<span>「刀が皮膚を貫けていない!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+  
+
+        <pre id="pre107" class="p1" style="display: none;">
+<span>（ーーバカなッ!!
+　手応えは、確かにあった筈!!）</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre108" class="p1" style="display: none;">
+<span>（なんと言う、恐るべき皮膚の硬度だッ!!
+　ゾンビを相手にしたのは、これが初めてだが……）
+　</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+        <pre id="pre109" class="p1" style="display: none;">
+<span>（ーーまさかッ!!
+　これ程までに人間離れしていたとは……ッ!!）</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+        <pre id="pre110" class="p1" style="display: none;">
+<span>「ちょっと!!　何するんだよ極道寺くん!!
+　危ないじゃないか!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre111" class="p1" style="display: none;">
+<span>「ゾンビくん!!
+　俺は……君の本気が見てみたい!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre112" class="p1" style="display: none;">
+<span>「いやいや!!　僕の本気って!!
+　君は、ヴィランじゃないし……!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+        <pre id="pre113" class="p1" style="display: none;">
+<span>「僕と君が、ここで戦う理由が無いだろう!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre114" class="p1" style="display: none;">
+<span>「理由なら…………あるッ」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+
+        <pre id="pre115" class="p1" style="display: none;">
+<span>「…………え?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre116" class="p1" style="display: none;">
+<span>「男と産まれたからには……。
+　目指すべきは、世界最強のヒーロー……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+          <pre id="pre117" class="p1" style="display: none;">
+<span>「俺よりも強いかも知れない存在が!!
+　今まさに俺の眼の前に現れ!!
+　俺の眼の前に立ち塞がる!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre118" class="p1" style="display: none;">
+<span>「ーー俺には!!
+　その事実が気に入らないッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+  
+
+  
+        <pre id="pre119" class="p1" style="display: none;">
+<span>「何故ヒーロー力600万もある俺の斬撃が、君には効かないのか!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre120" class="p1" style="display: none;">
+<span>「どうして無傷で居られるのか!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre121" class="p1" style="display: none;">
+<span>「ーー俺にはッ!!
+　それが不思議でならないッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+
+
+
+        <pre id="pre122" class="p1" style="display: none;">
+<span>「ヒーロー力場……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre123" class="p1" style="display: none;">
+<span>「…………何ッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre124" class="p1" style="display: none;">
+<span>「ヒーロー力場……だとッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre125" class="p1" style="display: none;">
+<span>「バカな…………ッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+          <pre id="pre126" class="p1" style="display: none;">
+ <span>試験官の話を耳にした直後。
+ 極道寺くんは、脱力した様子で刀の切っ先を足元へと向ける……。</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+  
+          <pre id="pre127" class="p1" style="display: none;">
+<span>「なぁ？　ヒーロー力場って何だよ？
+　どうして極道寺くんは、戦う意思を放棄したんだ？」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+          <pre id="pre128" class="p1" style="display: none;">
+<span>「さぁ？　そんなこと私に聞かれても……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+          <pre id="pre129" class="p1" style="display: none;">
+<span>「ヒーロー力場とは、読んで字の如くヒーローエネルギーの力場のことです……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+          <pre id="pre130" class="p1" style="display: none;">
+<span>「ヒーローエネルギーの力場……？」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+          <pre id="pre131" class="p1" style="display: none;">
+<span>「…………？」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+          <pre id="pre132" class="p1" style="display: none;">
+<span>「ヒーローエネルギーの力場と言うのは、現代物理学で例えるなら。
+　力点・作用点・支点で言う所の力点の部分になります……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+          <pre id="pre133" class="p1" style="display: none;">
+<span>「つまり、ヒーローエネルギーにおける力点。
+　それすなわち、ヒーローの内側に存在するエネルギーを放出する為の第一のてこ。言わば始点です……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+
+
+          <pre id="pre134" class="p1" style="display: none;">
+<span>「この始点から放出されるヒーローエネルギーの経路が作用点であり……。
+　ヒーローが攻撃すると決めた時のエネルギーの流れ……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+            <pre id="pre135" class="p1" style="display: none;">
+<span>「つまりヒーローとは、この内側に宿す見えないエネルギーを用いて戦う存在……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+            <pre id="pre136" class="p1" style="display: none;">
+<span>「身体の一部を炎に変換し、刀に乗せたり……。
+　通常の斬撃の威力を、常人の何倍にも増大化させるとかね？」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+            <pre id="pre137" class="p1" style="display: none;">
+<span>「ーーしかし!!
+　このヒーローエネルギーには、力点から作用点にかけて放出される際!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+       <pre id="pre138" class="p1" style="display: none;">
+<span>「直進方向に進むと言う性質が、前提条件として備わっています!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre> 
+  
+  
+          <pre id="pre139" class="p1" style="display: none;">
+<span>「それって……ひょっとして……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+          <pre id="pre140" class="p1" style="display: none;">
+<span>「…………ヒーロー力場とは、この直進方向に放出されたエネルギーの交錯点……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+            <pre id="pre141" class="p1" style="display: none;">
+<span>「ただし、この交錯点。
+　とある条件下に限って、ある面白い反応を示すんです……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+
+        <pre id="pre142" class="p1" style="display: none;">
+<span>「その……ある面白い反応と言うのが……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre143" class="p1" style="display: none;">
+<span>「ヒーロー力場による……エネルギーの絶対無効……ッ」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre144" class="p1" style="display: none;">
+<span>「……ッ!!　し……信じられんッ!!
+　まさか、あのゾンビくんが!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+
+        <pre id="pre145" class="p1" style="display: none;">
+<span>「そうです……。
+　恐らくゾンビくんの有する潜在ヒーロー力は、極道寺くんの先に掲示した600万と言う数値を……遥かに上回っている……」
+</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+      <pre id="pre146" class="p1" style="display: none;">
+<span>「うッ……嘘でしょッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre147" class="p1" style="display: none;">
+<span>「私も……長年この学園で試験官をして来ましたが……。
+　この現象を眼の辺りにしたのは、これが二度目です……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+        <pre id="pre148" class="p1" style="display: none;">
+<span>「よってゾンビくん!!
+　私から貴方に!!
+　改めて言わせてください!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+        <pre id="pre149" class="p1" style="display: none;">
+<span>「入学…………おめでとうございますッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre150" class="p1" style="display: none;">
+<span>「そ、そんな!?
+　ゾンビくんが、あの極道寺くんを差し置いて、この学園に入学決定するなんて!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+
+        <pre id="pre151" class="p1" style="display: none;">
+<span>「信じられん……ッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+        <pre id="pre152" class="p1" style="display: none;">
+<span>「ですが……極道寺くんもまた合格です!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+        <pre id="pre153" class="p1" style="display: none;">
+<span>「彼のヒーロー力も、また間違いなく一級品の賜物……ッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+        <pre id="pre154" class="p1" style="display: none;">
+<span>「彼が、この学園における即戦力の一人であると言う事に……。
+　変わりはありません…………」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre155" class="p1" style="display: none;">
+<span>「くッ……ッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre156" class="p1" style="display: none;">
+<span>「ザザッ……………」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+        <pre id="pre157" class="p1" style="display: none;">
+<span>「ご、極道寺くん……ッ!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+  
+        <pre id="pre158" class="p1" style="display: none;">
+<span>「…………」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+  
+      <pre id="pre159" class="p1" style="display: none;">
+<span>「ゾンビくん。改めておめでとうございます……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+      <pre id="pre160" class="p1" style="display: none;">
+<span>「は、はい……で、でも僕!!
+　極道寺くんのことが心配で……!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+      <pre id="pre161" class="p1" style="display: none;">
+<span>「止しなさい!!」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+      <pre id="pre162" class="p1" style="display: none;">
+<span>「……ッ!?」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+      <pre id="pre163" class="p1" style="display: none;">
+<span>「男が、一人で泣くと決めたのです……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+      <pre id="pre164" class="p1" style="display: none;">
+<span>「野暮なことをする物では、ありませんよ……？」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+
+      <pre id="pre165" class="p1" style="display: none;">
+<span>「分かり……ました……」</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+
+
+
+
+      <pre id="pre166" class="p1" style="display: none;">
+ <span>そうしてーー僕の入学試験は、終わりを告げ……。</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="#" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+
+
+
+      <pre id="pre167" class="p1" style="display: none;">
+ <span>代わりにーー僕の波乱万丈な学園生活が、始まりを告げたのだった……。</span>
+    <div class="button-flex">
+      <a href="#" id="backButton2" class="button2">戻る</a>
+      <button class="autoPlayButton button">オート再生</button>
+      <a href="/1-1(第一章、第4話)スパン/brave_index6.html" id="nextButton1" class="button">進む</a>
+    </div>
+  </pre>
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<audio id="transitionSound1" src="/sound-box/刀の素振り2.mp3" preload="auto"></audio>
+
+<audio id="transitionSound2" src="" preload="auto"></audio>
+
+
+
+  
+</div>
+
+<script src="brave_script5.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const testPreElement = document.getElementById('testPre');
+    if (testPreElement) {
+      console.log("testPre要素のdisplay:", getComputedStyle(testPreElement).display);
+    }
+  });
+</script>
+
+
+
+
+
+<script>
+    // 1. 各pre要素とその中のボタンを取得
+    const pre160Element = document.getElementById('pre160');
+    // pre1039Element の中の #nextButton1 を取得
+    const nextButtonFrom160 = pre160Element ? pre160Element.querySelector('#nextButton1') : null;
+
+    const pre161Element = document.getElementById('pre161');
+    // pre1040Element の中の #nextButton1 を取得
+    const nextButtonFrom161 = pre161Element ? pre161Element.querySelector('#nextButton1') : null;
+
+    const pre162Element = document.getElementById('pre162'); // 遷移先の要素
+
+    // 2. 各音声要素を取得
+    const transitionSound1 = document.getElementById('transitionSound1'); // pre1039からpre1040への音
+    const transitionSound2 = document.getElementById('transitionSound2'); // pre1040からpre1041への音
+
+    // 3. pre1039のボタンがクリックされた時の処理
+    if (nextButtonFrom160 && pre160Element && pre161Element) {
+        nextButtonFrom160.addEventListener('click', function(event) {
+            event.preventDefault(); // aタグのデフォルト動作（ページ遷移）を防止
+
+            // pre1039を非表示にし、pre1040を表示
+            pre160Element.style.display = 'none';
+            pre161Element.style.display = 'block';
+
+            // 最初の音声を再生
+            transitionSound1.currentTime = 0; // 再生位置を最初に戻す
+            transitionSound1.play();
+        });
+    }
+
+    // 4. pre1040のボタンがクリックされた時の処理
+    if (nextButtonFrom162 && pre162Element && pre163Element) {
+        nextButtonFrom162.addEventListener('click', function(event) {
+            event.preventDefault(); // aタグのデフォルト動作（ページ遷移）を防止
+
+            // pre1040を非表示にし、pre1041を表示
+            pre162Element.style.display = 'none';
+            pre163Element.style.display = 'block'; // 例としてpre1041を表示
+
+            // 2つ目の音声を再生
+            transitionSound2.currentTime = 0; // 再生位置を最初に戻す
+            transitionSound2.play();
+        });
+    }
+</script>
+
+
+<script>
+
+// Three.jsの初期化とアニメーションのコード
+// -----------------------------------------------------
+
+// 1. シーン、カメラ、レンダラーの設定
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('threeCanvas'),
+    alpha: true // 背景を透明にして、下のHTML要素が見えるようにする
+});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// 2. 炎のようなパーティクルシステムを作成
+const particleCount = 1000; // パーティクルの数
+const particles = new THREE.BufferGeometry();
+
+// パーティクルのサイズはY軸に応じて動的に変えるため、ここではサイズ調整を控えめに
+const pMaterial = new THREE.PointsMaterial({
+    size: 0.2, // パーティクルのベースサイズ
+    vertexColors: true, // 頂点カラーを使用
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending // 加算ブレンドで輝きを出す（重要！）
+});
+
+const pPositions = [];
+const pColors = [];
+const pVelocities = []; // パーティクルの速度と方向
+const pOriginalY = [];  // 初期Y座標を保存
+
+for (let i = 0; i < particleCount; i++) {
+    // 位置をランダムに初期化 (下から上に上がる炎をイメージ)
+    const startY = Math.random() * 2 - 2; // -2から0の範囲でスタート
+    pPositions.push(
+        (Math.random() - 0.5) * 2, // x (幅を少し狭める)
+        startY,                    // y
+        (Math.random() - 0.5) * 2  // z (奥行きを少し狭める)
+    );
+    pOriginalY.push(startY);
+
+    // 炎の色 (赤、オレンジ、黄色) - 黄色の比率を増やし、より明るい炎に
+    const color = new THREE.Color();
+    const rand = Math.random();
+    if (rand < 0.25) {
+        color.set(0xCC3300); // 濃い赤
+    } else if (rand < 0.55) {
+        color.set(0xFF6600); // 明るいオレンジ
+    } else {
+        color.set(0xFFFF00); // 黄色
+    }
+    pColors.push(color.r, color.g, color.b);
+
+    // 速度をランダムに初期化 (上に上がりつつ横にも少し広がる)
+    pVelocities.push(
+        (Math.random() - 0.5) * 0.005, // x方向の揺らぎ
+        0.015 + Math.random() * 0.01,   // y方向の主な上昇速度を少し上げる
+        (Math.random() - 0.5) * 0.005  // z方向の揺らぎ
+    );
+}
+
+particles.setAttribute('position', new THREE.Float32BufferAttribute(pPositions, 3));
+particles.setAttribute('color', new THREE.Float32BufferAttribute(pColors, 3));
+const particleSystem = new THREE.Points(particles, pMaterial);
+scene.add(particleSystem);
+
+// カメラの位置を調整
+camera.position.z = 5;
+
+// 3. アニメーションループ
+function animate() {
+    requestAnimationFrame(animate);
+
+    const positions = particles.attributes.position.array;
+    const count = particleCount;
+    
+    // パーティクルのサイズを動的に変更するため、マテリアルのサイズを更新する必要がある
+    // pMaterial.size をアニメーションさせることはできますが、ここではY座標でサイズを制御します
+    // ※注意: Three.jsのPointsMaterialのsizeは、全てのパーティクルに適用されるため、
+    //         個別のサイズ変更はシェーダーを使う方がより正確です。
+    //         ここでは、簡易的にY座標に応じてポイントの「サイズ」が変わるかのように見せるため、
+    //         Y座標に基づいてサイズを調整する処理は省略し、リセット時の位置と色の再設定に注力します。
+
+    for (let i = 0; i < count; i++) {
+        const i3 = i * 3; 
+
+        // パーティクルを移動
+        positions[i3 + 0] += pVelocities[i * 3 + 0]; // x
+        positions[i3 + 1] += pVelocities[i * 3 + 1]; // y
+        positions[i3 + 2] += pVelocities[i * 3 + 2]; // z
+
+        // 炎が上に行き過ぎたら下に戻す (ループさせる)
+        if (positions[i3 + 1] > 3) { // 画面上部を超えたら
+            positions[i3 + 1] = pOriginalY[i]; // 初期Y座標（下部）にリセット
+            
+            // リセット時に色と速度を再設定し、揺らぎを増やす
+            const color = new THREE.Color();
+            const rand = Math.random();
+            if (rand < 0.25) {
+                color.set(0xCC3300); 
+            } else if (rand < 0.55) {
+                color.set(0xFF6600); 
+            } else {
+                color.set(0xFFFF00); 
+            }
+            particles.attributes.color.array[i3] = color.r;
+            particles.attributes.color.array[i3 + 1] = color.g;
+            particles.attributes.color.array[i3 + 2] = color.b;
+            
+            pVelocities[i * 3 + 0] = (Math.random() - 0.5) * 0.005; 
+            pVelocities[i * 3 + 1] = 0.015 + Math.random() * 0.01;
+        }
+
+        // XとZ座標にノイズを加えて、炎の不規則な揺らぎを強調
+        positions[i3 + 0] += Math.sin(positions[i3 + 1] * 10 + Date.now() * 0.001) * 0.002;
+    }
+
+    particles.attributes.position.needsUpdate = true; // 位置情報の更新をThree.jsに伝える
+    particles.attributes.color.needsUpdate = true; // 色情報の更新をThree.jsに伝える
+
+    // シーンを描画
+    renderer.render(scene, camera);
+}
+
+// 4. ウィンドウサイズ変更時の処理 (レスポンシブ対応)
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
+
+animate(); // アニメーションを開始
+
+// -----------------------------------------------------
+
+
+
+</script>
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
