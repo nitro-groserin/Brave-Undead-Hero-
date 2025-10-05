@@ -20,6 +20,7 @@
 
         /* モーダル背景（画面全体を覆う） */
         .modal {
+            /* 常に初期状態は非表示（タップするまで出ない） */
             display: none; 
             position: fixed;
             z-index: 1000; 
@@ -29,6 +30,10 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.95); 
+            
+            /* モーダルが開く時は中央に表示するため、flexの設定は維持 */
+            align-items: center;
+            justify-content: center;
         }
 
         /* モーダル内の動画コンテナ */
@@ -57,7 +62,8 @@
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
-            z-index: 10001;
+            /* 💥z-indexを非常に高く設定 (念のための対策) */
+            z-index: 99999;
         }
 
         /* タップしてモーダルを起動するための透明なオーバーレイ */
@@ -211,7 +217,7 @@
 </div>
 
 <div style="text-align: center; margin-bottom: 10px;">
-    <a href="coming.html" style="
+    <a href="counter.html" style="
         display: inline-block;
         padding: 10px 25px; /* ボタンパディングを削減 */
         background-color: #4682b4;
@@ -249,9 +255,8 @@
 
     // モーダルを開き、動画を再生し、全画面表示をリクエスト
     function openModal() {
-        modal.style.display = "flex";
-        modal.style.alignItems = "center";
-        modal.style.justifyContent = "center";
+        // 💥タップで表示開始
+        modal.style.display = "flex"; 
         
         previewVideo.pause();
 
@@ -261,7 +266,8 @@
             console.log("モーダル動画の自動再生がブロックされました。");
         }); 
 
-        var elem = modalVideo;
+        // モーダル全体(div#videoModal)を全画面化
+        var elem = modal; 
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
         } else if (elem.webkitRequestFullscreen) {
@@ -273,6 +279,7 @@
 
     // モーダルを閉じ、動画を停止
     function closeModal() {
+        // 全画面が有効な場合、全画面を解除
         if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
@@ -302,15 +309,35 @@
     
     // モーダルの背景をクリックしてもモーダルを閉じる
     modal.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
+      // 閉じるボタンか、モーダル背景(videoModal自身)がクリックされた場合に閉じる
+      if (event.target.classList.contains('modal') || event.target.classList.contains('close')) {
         closeModal();
       }
     }
+    
+    // 💥追加：全画面表示終了イベントを監視し、終わったらモーダルを閉じる
+    document.addEventListener('fullscreenchange', function(event) {
+        if (!document.fullscreenElement) {
+            // 全画面表示が終了した場合
+            if (modal.style.display !== 'none') {
+                // closeModal()を実行し、display: noneにする
+                closeModal();
+            }
+        }
+    });
+
+    document.addEventListener('webkitfullscreenchange', function(event) {
+        if (!document.webkitFullscreenElement) {
+            if (modal.style.display !== 'none') {
+                closeModal();
+            }
+        }
+    });
+    
 </script>
 
 </body>
 </html>
-
 
 
 
