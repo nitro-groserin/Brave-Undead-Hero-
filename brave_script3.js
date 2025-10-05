@@ -1,6 +1,6 @@
 const audioPaths = [
-  { src: '', volume: 0.2, id: 'siren' },
-  { src: 'flow(original)(night).mp3', volume: 1.0, id: 'bonfire' }
+  { src: '/sound-box/flow(original)(night).mp3', volume: 1.0, id: 'siren' },
+  { src: '', volume: 1.0, id: 'bonfire' }
 ];
 
 const audioElements = {};
@@ -35,9 +35,10 @@ document.addEventListener('click', () => {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  // ページ遷移ボタンの効果音処理 (変更なし)
   const pageNextButton = document.getElementById('nextButton1');
   const pageBackButton = document.getElementById('backButton2');
-  const pageClickSound = new Audio('PC-Mouse06-1.mp3');
+  const pageClickSound = new Audio('/sound-box/PC-Mouse06-1.mp3');
 
   if (pageNextButton) {
     pageNextButton.addEventListener('click', function() {
@@ -49,19 +50,29 @@ document.addEventListener('DOMContentLoaded', function() {
   if (pageBackButton) {
     pageBackButton.addEventListener('click', function() {
       pageClickSound.play();
+      // 戻るボタンがページ遷移の場合、進行状況の調整は不要（遷移先のページで処理される）
       window.location.href = this.getAttribute('href');
     });
   }
 
+  // pre要素、ボタン、表示領域の取得 (変更なし)
   const preElements = document.querySelectorAll('#preContainer pre');
   const nextButtons = document.querySelectorAll('[id^="nextButton"]');
   const backButtons = document.querySelectorAll('[id^="backButton"]');
   const autoPlayButtons = document.querySelectorAll('.autoPlayButton');
+  const div1 = document.querySelector('.div1');
   const div2 = document.querySelector('.div2');
   const div3 = document.querySelector('.div3');
+  const div4 = document.querySelector('.div4');
+  const div5 = document.querySelector('.div5');
   const div6 = document.querySelector('.div6');
+  const div7 = document.querySelector('.div7');
+  const div8 = document.querySelector('.div8');
+  const div9 = document.querySelector('.div9');
 
-  const clickSound1 = new Audio('meka_ge_keyborad01.mp3');
+
+  // 効果音の定義とボリューム設定 (変更なし)
+  const clickSound1 = new Audio('/sound-box/meka_ge_keyborad01.mp3');
   const clickSound2 = new Audio('');
 
   const mainClickVolume1 = 0.2;
@@ -70,8 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
   clickSound1.volume = mainClickVolume1;
   clickSound2.volume = mainClickVolume2;
 
-  // ローカルストレージから進行状況を読み込み
-  let storyProgress = localStorage.getItem('storyProgress') ? parseInt(localStorage.getItem('storyProgress')) : 0;
+  // 📖 ページをまたぐ際のキーポイント：
+  // index2.htmlには15個のpre要素（インデックス0〜14）があるため、
+  // index3.htmlの最初のpre要素（pre16）は、全体でインデックス15にあたります。
+  const PREVIOUS_PAGE_LAST_INDEX = 14; 
+  // index3.htmlのpreElements配列のインデックス0が全体インデックスの何番目にあたるか
+  const PAGE_START_GLOBAL_INDEX = PREVIOUS_PAGE_LAST_INDEX + 1; // 15
+
+  // ローカルストレージから全体の進行状況を読み込む
+  let storyProgress = localStorage.getItem('storyProgress');
+  storyProgress = storyProgress ? parseInt(storyProgress, 10) : PAGE_START_GLOBAL_INDEX; // 初めて開く場合は15から開始
 
   let autoPlayInterval = null;
   let isAutoPlaying = false;
@@ -103,33 +122,65 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
   }
 
-  // 初期表示
+  // 初期表示（ローカルストレージの値がこのページの範囲内にあるかチェック）
+  if (storyProgress < PAGE_START_GLOBAL_INDEX || storyProgress >= PAGE_START_GLOBAL_INDEX + preElements.length) {
+     // 範囲外であれば、このページの最初の要素を表示
+     storyProgress = PAGE_START_GLOBAL_INDEX;
+  }
   showPre(storyProgress);
 
   // 表示切り替え関数
-  function showPre(index) {
-    if (index < 0 || index >= preElements.length) return;
+  function showPre(globalIndex) {
+    // このページ内のインデックスに変換
+    const pageIndex = globalIndex - PAGE_START_GLOBAL_INDEX;
+
+    if (pageIndex < 0 || pageIndex >= preElements.length) return; // 念のためのチェック
+    
     clearInterval(animationInterval);
     preElements.forEach((pre, i) => {
-      pre.style.display = i === index ? 'block' : 'none';
-      if (i === index && pre.querySelector('span')) {
+      pre.style.display = i === pageIndex ? 'block' : 'none';
+      if (i === pageIndex && pre.querySelector('span')) {
         clickSound1.muted = false;
         startTextAnimation(pre);
       }
     });
-    if (div2) div2.style.display = (index >= 1 && index < 38) || (index > 99) ? 'block' : 'none';
-    if (div3) div3.style.display = index >= 80 && index <= 98 ? 'block' : 'none';
-    if (div6) div6.style.display = index >= 80 && index <= 99 ? 'block' : 'none';
-    if (div3) div3.style.display = index >= 80 && index <= 100 ? 'block' : 'none';
+
+    // div要素の表示判定 (index2.htmlのスクリプトから引き継いだ条件を適用)
+    const index = globalIndex;
+    if (div1) div1.style.display = (index >= 1 && index < 100) || (index > 150) ? 'block' : 'none';
+    
+    if (div2) div2.style.display = (index >= 2 && index < 25 ) ||(index > 47 && index <= 48 ) || (index > 50 && index <= 57 ) || (index > 58 && index <= 61 ) || (index > 63 && index <= 64 ) || (index > 65 && index <= 68 ) || (index > 70 && index <= 73 ) || (index > 76 && index <= 780 ) ? 'block' : 'none';
+
+    
+    if (div3) div3.style.display = (index >= 90 && index < 100 ) || (index > 110 && index <= 115) || (index > 120 ) ? 'block' : 'none';
+    
+
+    if (div4) div4.style.display = (index >= 1 && index < 41 ) || (index > 41 && index <= 45 ) ||  (index > 61 && index <= 62 ) || (index > 73 && index <= 74 )  ? 'block' : 'none';
+
+    
+
+    if (div5) div5.style.display = (index >= 46 && index < 47) || (index > 48 && index <= 49 ) ||  (index > 69 && index <= 70 ) || (index > 120 ) ? 'block' : 'none';
+
+    
+    if (div6) div6.style.display = (index >= 47 && index < 48) || (index > 49 && index <= 50 ) || (index > 68 && index <= 69 ) ? 'block' : 'none';
+    
+    
+    if (div7) div7.style.display = (index >= 58 && index < 59 ) || (index > 64 && index <= 65 ) || (index > 170) ? 'block' : 'none';
+
+    
+    if (div8) div8.style.display = (index >= 63 && index < 64 ) || (index > 164 && index <= 165) || (index > 170) ? 'block' : 'none';
+
+    if (div9) div9.style.display = index >= 97 && index < 100 ? 'block' : 'none';
+
+    localStorage.setItem('storyProgress', globalIndex); // 現在のグローバルインデックスを保存
   }
 
   // 次へ
   function nextPre() {
-    if (storyProgress < preElements.length - 1) {
+    if (storyProgress < PAGE_START_GLOBAL_INDEX + preElements.length - 1) {
       storyProgress++;
       showPre(storyProgress);
       playClickSound();
-      localStorage.setItem('storyProgress', storyProgress); // 進行状況を保存
     } else {
       stopAutoPlay();
     }
@@ -137,15 +188,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 前へ
   function prevPre() {
-    if (storyProgress > 0) {
+    if (storyProgress > PAGE_START_GLOBAL_INDEX) { // このページの最初の要素に戻るまで
       storyProgress--;
       showPre(storyProgress);
       playClickSound();
-      localStorage.setItem('storyProgress', storyProgress); // 進行状況を保存
+    } else if (storyProgress === PAGE_START_GLOBAL_INDEX) {
+       // 最初の要素で「戻る」ボタンを押した場合、前のページに遷移
+       const backButtonHref = preElements[0].querySelector('#backButton2').getAttribute('href');
+       if (backButtonHref && backButtonHref !== '#') {
+           window.location.href = backButtonHref;
+       }
     }
   }
 
-  // オート再生開始
+  // オート再生開始 (変更なし)
   function startAutoPlay() {
     if (!isAutoPlaying) {
       isAutoPlaying = true;
@@ -158,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // オート再生停止
+  // オート再生停止 (変更なし)
   function stopAutoPlay() {
     if (isAutoPlaying) {
       isAutoPlaying = false;
@@ -169,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // イベントリスナー設定
+  // イベントリスナー設定 (変更なし)
   nextButtons.forEach(button => {
     button.addEventListener('click', () => {
       stopAutoPlay();
@@ -180,11 +236,15 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   backButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      stopAutoPlay();
-      clearInterval(animationInterval);
-      prevPre();
-      playClickSound();
+    button.addEventListener('click', (e) => {
+      // ページ遷移（aタグ）による戻るは、先にページ遷移ボタンのイベントで処理されるため、
+      // ここでは内部的な「前へ」の動作のみを制御
+      if (e.currentTarget.getAttribute('href') === '#') {
+         stopAutoPlay();
+         clearInterval(animationInterval);
+         prevPre();
+         playClickSound();
+      }
     });
   });
 
@@ -201,6 +261,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
