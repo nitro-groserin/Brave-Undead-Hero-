@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ページ遷移ボタンの効果音処理 (変更なし)
   const pageNextButton = document.getElementById('nextButton1');
   const pageBackButton = document.getElementById('backButton2');
-  const pageClickSound = new Audio('/sound-box/PC-Mouse06-1.mp3');
+  const pageClickSound = new Audio('PC-Mouse06-1.mp3');
 
   if (pageNextButton) {
     pageNextButton.addEventListener('click', function() {
