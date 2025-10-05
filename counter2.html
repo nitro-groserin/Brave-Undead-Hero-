@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレイブ・アンデッド・ヒーロー</title>
+
+    <style>
+        /* 【グローバルリセット】ブラウザのデフォルトマージンをリセット */
+        body, html, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 💥修正点1：HTMLとBODYの縦幅を画面サイズ（ビューポート）に固定し、スクロールを無効化 */
+        html, body {
+            height: 100vh; 
+            overflow: hidden; 
+        }
+
+        /* モーダル背景（画面全体を覆う） */
+        .modal {
+            /* 常に初期状態は非表示（タップするまで出ない） */
+            display: none; 
+            position: fixed;
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.95); 
+            
+            /* モーダルが開く時は中央に表示するため、flexの設定は維持 */
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* モーダル内の動画コンテナ */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            height: auto;
+        }
+
+        /* モーダル内の動画要素 */
+        #modalVideo {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 閉じるボタン */
+        .close {
+            position: fixed;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            /* 💥z-indexを非常に高く設定 (念のための対策) */
+            z-index: 99999;
+        }
+
+        /* タップしてモーダルを起動するための透明なオーバーレイ */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+<div style="
+    text-align: center;
+    border: 2px solid #ff4500; 
+    padding: 10px; /* パディングも少し削減 */
+    margin: 15px auto 15px auto; /* 上下マージンを15pxに削減 */
+    max-width: 400px;
+    background-color: #fffaf0;
+    border-radius: 8px;
+">
+    <h3 style="margin-top: 0; color: #ff4500; font-size: 15px;">
+        YoutubeやTikTok等のコンテンツ<br>
+      🔥  会社の商品等を格安で宣伝してみませんか？ 🔥
+    </h3>
+    <p style="font-size: 13px; color: #333; margin-bottom: 5px;">
+        コチラのスペースにドカンと掲載💪<br>
+        <strong style="color: #ff4500; font-size: 15px;">【掲載料金：月額5,000円】</strong>
+    </p>
+    <a href="mail.html" style="
+        display: inline-block;
+        padding: 5px 15px; /* ボタンパディングを削減 */
+        background-color: #ff4500;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 5px;
+    ">
+        詳細・お問い合わせはこちら
+    </a>
+</div>
+
+
+<div style="text-align: center; margin-bottom: 10px;">
+    <p style="
+        font-size: 22px; /* フォントサイズを少し削減 */
+        color: #ff4500;
+        font-weight: 900;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        padding: 8px 0;
+        border: 3px dashed #ff4500;
+        display: inline-block;
+        padding: 8px 25px;
+        background-color: #fff8e8;
+    ">
+        🌟 COMING SOON 🌟
+    </p>
+</div>
+
+<div style="
+    text-align: center;
+    padding: 5px; /* パディングを削減 */
+    margin: 5px auto; /* 上下マージンを最小化 */
+    max-width: 400px;
+">
+    <a href="https://nitro-groserin.github.io/Yakuza-Slayer">
+        <img src="/20251002_135127.jpg" alt="広告スペース" style="
+            max-width: 100%; 
+            height: auto; 
+            border: 2px solid #ff4500;
+            border-radius: 8px;
+            background-color: #fffaf0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        ">
+    </a>
+</div>
+
+<div style="
+    text-align: center;
+    padding: 5px 15px 5px 15px; /* 上下のパディングを削減 */
+    margin: 5px auto; /* 上下マージンを最小化 */
+    max-width: 400px;
+">
+    <h3 style="
+        font-size: 15px;
+        color: #4682b4;
+        margin-bottom: 5px; /* マージンを削減 */
+    ">
+        👇独占PV / 画面クリックで拡大 / 🚫音量注意
+    </h3>
+    <div style="
+        position: relative;
+        padding-top: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    ">
+        <video 
+            id="previewVideo"
+            src="/screen-20250612-034121~2.mp4" 
+            preload="metadata"
+            muted 
+            playsinline
+            loop
+            autoplay
+            style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            ">
+        </video>
+        <div class="video-overlay" onclick="openModal()"></div>
+    </div>
+</div>
+
+<p style="
+    text-align: center;
+    font-size: 13px; /* フォントサイズを削減 */
+    color: #ff0000; 
+    font-weight: bold;
+    margin: 5px auto 5px auto; /* 上下マージンを最小化 */
+    max-width: 400px;
+">
+    👆　タップで全画面・高音質再生！ 👆
+</p>
+<div style="
+    text-align: center; 
+    padding: 5px; /* パディングを削減 */
+    font-size: 14px; 
+    color: #666;
+    border-top: 1px solid #eee;
+">
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center">
+                <img src="http://www5.kannet.ne.jp/~counter/count.cgi?name=brave&type=1&width=9" alt="アクセスカウンター">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align: center; margin-bottom: 10px;">
+    <a href="counter.html" style="
+        display: inline-block;
+        padding: 10px 25px; /* ボタンパディングを削減 */
+        background-color: #4682b4;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    " onmouseover="this.style.backgroundColor='#1e90ff';" onmouseout="this.style.backgroundColor='#4682b4';">
+        ここを押して次のページへ！
+    </a>
+</div>
+
+<div id="videoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    
+    <div class="modal-content">
+        <video id="modalVideo" src="/screen-20250612-034121~2.mp4" controls autoplay></video>
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("videoModal");
+    var modalVideo = document.getElementById("modalVideo");
+    var previewVideo = document.getElementById("previewVideo");
+
+    // ページ読み込み完了後に、プレビュー動画の再生を強制的に開始
+    window.onload = function() {
+        previewVideo.play().catch(error => {
+            console.log("プレビュー動画の自動再生がブロックされました。");
+        });
+    };
+    
+
+    // モーダルを開き、動画を再生し、全画面表示をリクエスト
+    function openModal() {
+        // 💥タップで表示開始
+        modal.style.display = "flex"; 
+        
+        previewVideo.pause();
+
+        modalVideo.load();
+        
+        modalVideo.play().catch(error => {
+            console.log("モーダル動画の自動再生がブロックされました。");
+        }); 
+
+        // モーダル全体(div#videoModal)を全画面化
+        var elem = modal; 
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    }
+
+    // モーダルを閉じ、動画を停止
+    function closeModal() {
+        // 全画面が有効な場合、全画面を解除
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+        
+        modal.style.display = "none";
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+        
+        // プレビュー動画を再開
+        previewVideo.play().catch(error => {
+             // 再開がブロックされた場合
+        });
+    }
+    
+    // Escキーが押されたり、全画面が終了したらモーダルを閉じる
+    document.onkeydown = function(e) {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    };
+    
+    // モーダルの背景をクリックしてもモーダルを閉じる
+    modal.onclick = function(event) {
+      // 閉じるボタンか、モーダル背景(videoModal自身)がクリックされた場合に閉じる
+      if (event.target.classList.contains('modal') || event.target.classList.contains('close')) {
+        closeModal();
+      }
+    }
+    
+    // 💥追加：全画面表示終了イベントを監視し、終わったらモーダルを閉じる
+    document.addEventListener('fullscreenchange', function(event) {
+        if (!document.fullscreenElement) {
+            // 全画面表示が終了した場合
+            if (modal.style.display !== 'none') {
+                // closeModal()を実行し、display: noneにする
+                closeModal();
+            }
+        }
+    });
+
+    document.addEventListener('webkitfullscreenchange', function(event) {
+        if (!document.webkitFullscreenElement) {
+            if (modal.style.display !== 'none') {
+                closeModal();
+            }
+        }
+    });
+    
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
