@@ -1,6 +1,6 @@
 const audioPaths = [
-  { src: '/sound-box/剣の戦い.mp3', volume: 1.0, id: 'siren' },
-  { src: '/sound-box/maou_game_medley02.mp3', volume: 1.0, id: 'bonfire' }
+  { src: '剣の戦い.mp3', volume: 1.0, id: 'siren' },
+  { src: 'maou_game_medley02.mp3', volume: 1.0, id: 'bonfire' }
 ];
 
 const audioElements = {};
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // 効果音の定義とボリューム設定 (変更なし)
-  const clickSound1 = new Audio('/sound-box/meka_ge_keyborad01.mp3');
+  const clickSound1 = new Audio('meka_ge_keyborad01.mp3');
   const clickSound2 = new Audio('');
 
   const mainClickVolume1 = 0.2;
