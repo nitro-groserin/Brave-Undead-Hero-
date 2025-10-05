@@ -1,6 +1,6 @@
 const audioPaths = [
   { src: '', volume: 0.2, id: 'siren' },
-  { src: '/sound-box/勇者のオルゴール(KR).mp3', volume: 1.0, id: 'bonfire' }
+  { src: '勇者のオルゴール(KR).mp3', volume: 1.0, id: 'bonfire' }
 ];
 
 const audioElements = {};
