@@ -1,5 +1,5 @@
 const audioPaths = [
-  { src: 'flow(original)(night).mp3', volume: 1.0, id: 'siren' },
+  { src: 'flow(original)(night).mp3', volume: 0.3, id: 'siren' },
   { src: '', volume: 1.0, id: 'bonfire' }
 ];
 
