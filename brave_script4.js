@@ -1,6 +1,6 @@
 const audioPaths = [
   { src: '', volume: 0.2, id: 'siren' },
-  { src: 'flow(original)(night).mp3', volume: 1.0, id: 'bonfire' }
+  { src: 'flow(original)(night).mp3', volume: 0.3, id: 'bonfire' }
 ];
 
 const audioElements = {};
