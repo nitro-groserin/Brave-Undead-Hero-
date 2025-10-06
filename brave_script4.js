@@ -81,12 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
   clickSound1.volume = mainClickVolume1;
   clickSound2.volume = mainClickVolume2;
 
+
+
+
   // 📖 ページをまたぐ際のキーポイント：
-  // index2.htmlには15個のpre要素（インデックス0〜14）があるため、
-  // index3.htmlの最初のpre要素（pre16）は、全体でインデックス15にあたります。
-  const PREVIOUS_PAGE_LAST_INDEX = 14; 
-  // index3.htmlのpreElements配列のインデックス0が全体インデックスの何番目にあたるか
-  const PAGE_START_GLOBAL_INDEX = PREVIOUS_PAGE_LAST_INDEX + 1; // 15
+// brave_index4.html のスクリプトの冒頭部分
+const PREVIOUS_PAGE_LAST_INDEX = 29; // 14から29に修正
+const PAGE_START_GLOBAL_INDEX = PREVIOUS_PAGE_LAST_INDEX + 1; // 15から30に修正
+
+
+
 
   // ローカルストレージから全体の進行状況を読み込む
   let storyProgress = localStorage.getItem('storyProgress');
@@ -147,24 +151,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // div要素の表示判定 (index2.htmlのスクリプトから引き継いだ条件を適用)
     const index = globalIndex;
-    if (div1) div1.style.display = (index >= 15 && index < 100) || (index > 150) ? 'block' : 'none';
-    if (div2) div2.style.display = (index >= 19 && index < 34 ) || (index > 100) ? 'block' : 'none';
-    if (div3) div3.style.display = (index >= 19 && index < 100 ) || (index > 110 && index <= 115) || (index > 120) ? 'block' : 'none';
+
+
+      // div1 (旧: >= 15)
+    if (div1) div1.style.display = (index >= 30 && index < 115) || (index > 165) ? 'block' : 'none';
+    
+    // div2 (旧: >= 19)
+    if (div2) div2.style.display = (index >= 34 && index < 49 ) || (index > 115) ? 'block' : 'none';
+    
+    // div3 (旧: >= 19)
+    if (div3) div3.style.display = (index >= 34 && index < 115 ) || (index > 125 && index <= 130) || (index > 135) ? 'block' : 'none';
     
 
-    if (div4) div4.style.display = (index >= 34 && index < 45 ) || (index > 50 && index <= 55 ) || (index > 57 && index <= 64 ) || (index > 65 ) ? 'block' : 'none';
+    // div4 (旧: >= 34)
+    if (div4) div4.style.display = (index >= 49 && index < 60 ) || (index > 65 && index <= 70 ) || (index > 72 && index <= 79 ) || (index > 80 ) ? 'block' : 'none';
 
     
+    // div5 (旧: >= 46)
+    if (div5) div5.style.display = (index >= 61 && index < 62) || (index > 125 && index <= 130) || (index > 135) ? 'block' : 'none';
+    
+    // div6 (旧: >= 47)
+    if (div6) div6.style.display = (index >= 62 && index < 63) || (index > 115 && index <= 125) ? 'block' : 'none';
+    
+    // div7 (旧: >= 48)
+    if (div7) div7.style.display = index >= 63 && index < 64 ? 'block' : 'none';
+    
+    // div8 (旧: >= 56)
+    if (div8) div8.style.display = (index >= 71 && index < 73 ) || (index > 79 && index <= 80) || (index > 135) ? 'block' : 'none';
 
-    if (div5) div5.style.display = (index >= 46 && index < 47) || (index > 110 && index <= 115) || (index > 120) ? 'block' : 'none';
-    if (div6) div6.style.display = (index >= 47 && index < 48) || (index > 100 && index <= 110) ? 'block' : 'none';
-    if (div7) div7.style.display = index >= 48 && index < 49 ? 'block' : 'none';
-    if (div8) div8.style.display = (index >= 56 && index < 58 ) || (index > 64 && index <= 65) || (index > 120) ? 'block' : 'none';
-
-    if (div9) div9.style.display = index >= 97 && index < 100 ? 'block' : 'none';
+    // div9 (旧: >= 97)
+    if (div9) div9.style.display = index >= 112 && index < 115 ? 'block' : 'none';
 
     localStorage.setItem('storyProgress', globalIndex); // 現在のグローバルインデックスを保存
-  }
+}
+
+
+
+
+  
 
   // 次へ
   function nextPre() {
