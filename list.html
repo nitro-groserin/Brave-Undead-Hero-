@@ -35,6 +35,44 @@
             /* font-size: 3em;
             font-weight: bold; */
         }
+            .header-banner2 {
+            width: 90%;
+            max-width: 1000px;
+            height: 150px; /* 高さは維持（Flexboxでh1を中央配置するため） */
+            
+            /* 【修正点】バナー背景の白、影、外枠を削除 */
+            background-color: transparent; /* 背景を透明に */
+            
+            /* テキストを中央に配置するためのFlexbox */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            color: #333333; 
+            text-shadow: none;
+            margin: 20px auto;
+        }
+        
+        .header-banner2 h1 {
+            font-size: 2.2em;
+            margin: 0;
+            padding: 10px 20px;
+            /* 枠線の設定は残す */
+            border: 3px solid black; 
+            background-color: rgba(204, 0, 0, 0.1); /* 薄い赤の背景 */
+            /* 【修正点】文字色を黒に設定 */
+            color: black; 
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* リンクの装飾を解除 */
+        .header-banner-link {
+            text-decoration: none;
+            display: block;
+            margin: 0 auto;
+        }
+        
         .title {
             text-align: center;
             padding: 20px 0;
@@ -110,6 +148,12 @@
     </a>
 </div>
 
+
+                <a href="Youtube.html" class="header-banner-link">
+        <div class="header-banner2">
+            <h1>ゾンビくんのおすすめYoutube</h1>
+        </div>
+                </a>
 
         <div class="episode-list">
             <h2>エピソード一覧</h2>
