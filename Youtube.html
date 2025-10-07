@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレイブ・アンデッド・ヒーロー</title>
+    <style>
+        /* * コンテナ（全体を中央寄せにするため） */
+        .video-list-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* * 各ビデオ要素のスタイル - アスペクト比を16:9に固定 */
+        .video-item {
+            width: 100%;
+            max-width: 600px; /* ビデオの最大幅を固定 */
+            margin: 20px 0; /* 上下にスペースを確保 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            /* アスペクト比固定 (16:9) */
+            position: relative;
+            padding-top: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            /* クリックできることを示すカーソル */
+            cursor: pointer; 
+        }
+
+        /* * videoタグとimgタグ自体の設定 - 枠いっぱいに広げる */
+        .video-item video,
+        .video-item img {
+            width: 100%;
+            height: 100%; 
+            display: block; 
+            
+            /* 親要素の枠に合わせる */
+            position: absolute; 
+            top: 0;
+            left: 0;
+            /* モーダル表示中はここで再生されないようにイベントをブロック */
+            pointer-events: none; 
+        }
+
+        /* * セクションの区切りとして */
+        h2 {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        /* ==================================== */
+        /* * モーダルウィンドウのスタイル */
+        /* ==================================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* 背景を暗くする */
+            display: none; /* 初期状態では非表示 */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* 最前面に表示 */
+        }
+
+        .modal.is-active {
+            display: flex; /* モーダルを表示 */
+        }
+
+        /* PCでのモーダルコンテンツ（動画コンテナ）の基本設定 */
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px; /* PCでの最大幅 */
+            /* PCでの動画のアスペクト比 (16:9) */
+            padding-top: 56.25%; 
+            height: 0;
+            overflow: hidden;
+        }
+
+        /* --- スマートフォンでの全画面表示設定 (画面幅600px以下) --- */
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 100%;    /* 横幅を画面いっぱいに */
+                max-width: 100%;
+                height: 100%;   /* 縦幅を画面いっぱいに */
+                padding-top: 0; /* アスペクト比固定を解除 */
+            }
+        }
+        /* -------------------------------------------------------- */
+
+        /* モーダル内の動画 (video/iframe共通) */
+        .modal-video {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; 
+            display: block; 
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001; /* 動画より手前に表示 */
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+
+<div style="
+    text-align: center;
+    border: 2px solid #ff4500; 
+    padding: 10px; 
+    margin: 15px auto 15px auto; 
+    max-width: 400px;
+    background-color: #fffaf0;
+    border-radius: 8px;
+">
+    <h3 style="margin-top: 0; color: #ff4500; font-size: 15px;">
+        YoutubeやTikTok等のコンテンツ<br>
+      🔥  会社の商品等を格安で宣伝してみませんか？ 🔥
+    </h3>
+    <p style="font-size: 13px; color: #333; margin-bottom: 5px;">
+        コチラのスペースにドカンと掲載💪<br>
+        <strong style="color: #ff4500; font-size: 15px;">【掲載料金：月額5,000円】</strong>
+    </p>
+    <a href="mail.html" style="
+        display: inline-block;
+        padding: 5px 15px; 
+        background-color: #ff4500;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 5px;
+    ">
+        詳細・お問い合わせはこちら
+    </a>
+</div>
+
+
+    <div class="video-list-container">
+        <h2>ゾンビくんおすすめのYoutube</h2>
+
+        <div class="video-item" data-type="youtube" data-id="fi3efhZgRVU">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/fi3efhZgRVU/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 1">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+        <div class="video-item" data-type="youtube" data-id="nrnjn_PHUtY">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/nrnjn_PHUtY/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 2">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+        <div class="video-item" data-type="youtube" data-id="Ujg3cF5ScO4">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/Ujg3cF5ScO4/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 3">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+        <div class="video-item" data-type="youtube" data-id="o4COqjc0epo">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/o4COqjc0epo/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 4">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+
+        <div class="video-item" data-type="youtube" data-id="Ll8ok-9qJeE">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/Ll8ok-9qJeE/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 5">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+   
+   
+  
+        <div class="video-item" data-type="youtube" data-id="    Ik7e0TY5Smo">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/Ik7e0TY5Smo/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 6">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+        <div class="video-item" data-type="youtube" data-id="GnkSeYl2T24">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/GnkSeYl2T24/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 7">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+        <div class="video-item" data-type="youtube" data-id="EP-dNgSH-no">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/EP-dNgSH-no/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 8">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+
+        <div class="video-item" data-type="youtube" data-id="FYrbbEmZezY">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/FYrbbEmZezY/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 9">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+        <div class="video-item" data-type="youtube" data-id="hFN33l9YC_k">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/hFN33l9YC_k/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 10">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+        
+        
+        
+            <div class="video-item" data-type="youtube" data-id="        GY1Z2hFGlzI">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/GY1Z2hFGlzI/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 9">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+
+
+
+        <div class="video-item" data-type="youtube" data-id="wnds62iEb10">
+            <img class="youtube-thumbnail" 
+                 src="https://img.youtube.com/vi/wnds62iEb10/mqdefault.jpg" 
+                 alt="YouTube動画サムネイル 9">
+            <p style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                color: white; 
+                background: rgba(0,0,0,0.5); 
+                padding: 5px 10px; 
+                border-radius: 5px;
+                z-index: 1;
+            ">YouTubeを再生</p>
+        </div>
+    
+        
+        
+        
+    </div>
+
+    <div id="videoModal" class="modal">
+        <button class="close-button" id="closeModal">&times;</button>
+        <div class="modal-content">
+            </div>
+    </div>
+    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const videoItems = document.querySelectorAll('.video-item');
+    const modal = document.getElementById('videoModal');
+    const modalContent = modal.querySelector('.modal-content');
+    const closeModalButton = document.getElementById('closeModal');
+
+    // モーダルを開く処理
+    videoItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const videoType = item.getAttribute('data-type');
+            
+            // 古いコンテンツをクリア
+            modalContent.innerHTML = '';
+
+            if (videoType === 'youtube') {
+                // ★YouTube動画の場合の処理
+                const videoId = item.getAttribute('data-id');
+                if (!videoId) return;
+
+                // <iframe>要素を作成 (YouTube埋め込み)
+                const iframeElement = document.createElement('iframe');
+                iframeElement.className = 'modal-video';
+                // 埋め込みURLを生成 (autoplay=1で自動再生)
+                iframeElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                iframeElement.setAttribute('frameborder', '0');
+                // 埋め込みに必要な属性
+                iframeElement.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframeElement.setAttribute('allowfullscreen', '');
+                
+                // 挿入
+                modalContent.appendChild(iframeElement);
+
+            } else if (videoType === 'local') {
+                // ★ローカル動画の場合の処理 (ローカル動画を残す場合はこのまま利用)
+                const videoSrc = item.getAttribute('data-src');
+                const videoPoster = item.querySelector('video')?.getAttribute('poster');
+
+                if (!videoSrc) return;
+
+                const videoElement = document.createElement('video');
+                videoElement.className = 'modal-video';
+                videoElement.controls = true; 
+                videoElement.autoplay = true; 
+                
+                if (videoPoster) {
+                    videoElement.poster = videoPoster;
+                }
+
+                const sourceElement = document.createElement('source');
+                sourceElement.src = videoSrc;
+                sourceElement.type = 'video/mp4';
+
+                videoElement.appendChild(sourceElement);
+                modalContent.appendChild(videoElement);
+            } else {
+                return; // typeがない場合は何もしない
+            }
+
+            // モーダルを表示
+            modal.classList.add('is-active');
+        });
+    });
+
+    // モーダルを閉じる処理
+    const closeModal = () => {
+        // モーダルを非表示にする
+        modal.classList.remove('is-active');
+        
+        // 動画の再生を停止 (音が残り続けないように)
+        const videoElement = modalContent.querySelector('video');
+        if (videoElement) {
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        }
+        
+        // ★YouTube iframeの再生を停止 (srcを空にする)
+        const iframeElement = modalContent.querySelector('iframe');
+        if (iframeElement) {
+            iframeElement.src = '';
+        }
+        
+        modalContent.innerHTML = '';
+    };
+
+    // 閉じるボタンでモーダルを閉じる
+    closeModalButton.addEventListener('click', closeModal);
+
+    // モーダルの背景をクリックして閉じる
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // ESCキーでモーダルを閉じる
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-active')) {
+            closeModal();
+        }
+    });
+});
+    </script>
+    
+    
+    
+<div style="
+    text-align: center;
+    border: 2px solid #ff4500; 
+    padding: 10px; 
+    margin: 15px auto 15px auto; 
+    max-width: 400px;
+    background-color: #fffaf0;
+    border-radius: 8px;
+">
+    <h3 style="margin-top: 0; color: #ff4500; font-size: 15px;">
+        YoutubeやTikTok等のコンテンツ<br>
+      🔥  会社の商品等を格安で宣伝してみませんか？ 🔥
+    </h3>
+    <p style="font-size: 13px; color: #333; margin-bottom: 5px;">
+        コチラのスペースにドカンと掲載💪<br>
+        <strong style="color: #ff4500; font-size: 15px;">【掲載料金：月額5,000円】</strong>
+    </p>
+    <a href="mail.html" style="
+        display: inline-block;
+        padding: 5px 15px; 
+        background-color: #ff4500;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 5px;
+    ">
+        詳細・お問い合わせはこちら
+    </a>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
